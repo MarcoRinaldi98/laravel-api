@@ -24,6 +24,7 @@ class ProjectController extends Controller
 
         return response()->json([
             'success' => true,
+            // inserisco in questa chiave la risposta della query che mi da il database per trasferirla al front
             'project' => $project
         ]);
     }

@@ -22,10 +22,17 @@ class ProjectController extends Controller
     {
         $project = Project::where('slug', $slug)->with(['technologies', 'type'])->first();
 
-        return response()->json([
-            'success' => true,
-            // inserisco in questa chiave la risposta della query che mi da il database per trasferirla al front
-            'project' => $project
-        ]);
+        if ($project) {
+            return response()->json([
+                'success' => true,
+                // inserisco in questa chiave la risposta della query che mi da il database per trasferirla al front
+                'project' => $project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'error' => 'Progetto non trovato!'
+            ]);
+        }
     }
 }
